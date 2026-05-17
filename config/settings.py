@@ -40,8 +40,9 @@ SYSTEM_APPS = [
 ]
 
 CUSTOM_APPS = [
-    "houses.apps.HousesConfig",
+    "common.apps.CommonConfig",
     "users.apps.UsersConfig",
+    "rooms.apps.RoomsConfig",
 ]
 
 INSTALLED_APPS = SYSTEM_APPS + CUSTOM_APPS
