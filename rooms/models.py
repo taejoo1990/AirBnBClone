@@ -19,6 +19,10 @@ class Room(CommonModel):
             "Shared Room",
         )
 
+    name = models.CharField(
+        max_length=180,
+        default="",
+    )
     country = models.CharField(
         max_length=50,
         default="JAPAN",
@@ -27,6 +31,7 @@ class Room(CommonModel):
         max_length=80,
         default="Tokyo",
     )
+
     price = models.PositiveIntegerField()
     rooms = models.PositiveIntegerField()
     toilets = models.PositiveIntegerField()
@@ -48,6 +53,15 @@ class Room(CommonModel):
     amenities = models.ManyToManyField(
         "rooms.Amenity",
     )
+    category = models.ForeignKey(
+        "categories.Category",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+    )
+
+    def __str__(self) -> str:
+        return self.name
 
 
 class Amenity(CommonModel):
@@ -55,8 +69,16 @@ class Amenity(CommonModel):
 
     name = models.CharField(
         max_length=150,
+        unique=True,
     )
     description = models.CharField(
         max_length=150,
         null=True,
+        blank=True,
     )
+
+    def __str__(self) -> str:
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "Amenities"
