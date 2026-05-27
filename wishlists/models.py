@@ -10,8 +10,10 @@ class Wishlist(CommonModel):
     room = models.ManyToManyField(
         "rooms.Room",
         blank=True,
+        related_name="wishlists",
     )
     experiences = models.ManyToManyField(
         "experiences.Experience",
         blank=True,
+        related_name="wishlists",
     )
